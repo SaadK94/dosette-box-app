@@ -53,6 +53,9 @@ export const getters = {
 	},
 	getBedtime: (state) => {
 		return state.user.dosette.bedtime;
+	},
+	getMedicines: (state) => {
+		return state.user.dosette;
 	}
 };
 export const actions = {};

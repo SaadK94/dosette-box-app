@@ -1,26 +1,23 @@
 <template>
   <vs-row vs-justify="center">
-    <app-time>
-      <app-morning-table></app-morning-table>
+    <app-time :time="time.morning">
+      <app-table :medicines="medicines.morning"></app-table>
     </app-time>
-    <app-time>
-      <app-mid-day-table></app-mid-day-table>
+    <app-time :time="time.midDay">
+      <app-table :medicines="medicines.midDay"></app-table>
     </app-time>
-    <app-time>
-      <app-tea-time-table></app-tea-time-table>
+    <app-time :time="time.teaTime">
+      <app-table :medicines="medicines.teaTime"></app-table>
     </app-time>
-    <app-time>
-      <app-bed-time-table></app-bed-time-table>
+    <app-time :time="time.bedtime">
+      <app-table :medicines="medicines.bedtime"></app-table>
     </app-time>
   </vs-row>
 </template>
 
 <script>
 import Time from "./Time";
-import MorningTable from "./tables/MorningTable.vue";
-import MidDayTable from "./tables/MidDayTable.vue";
-import TeaTimeTable from "./tables/TeaTimeTable.vue";
-import BedTimeTable from "./tables/BedTimeTable.vue";
+import Table from "./Table.vue";
 
 export default {
   data() {
@@ -35,10 +32,13 @@ export default {
   },
   components: {
     appTime: Time,
-    appMorningTable: MorningTable,
-    appMidDayTable: MidDayTable,
-    appTeaTimeTable: TeaTimeTable,
-    appBedTimeTable: BedTimeTable
+    appTable: Table
+  },
+  computed: {
+    medicines() {
+      return this.$store.getters.getMedicines;
+    }
   }
 };
 </script>
+

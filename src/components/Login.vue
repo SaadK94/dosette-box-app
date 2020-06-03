@@ -26,7 +26,7 @@ export default {
     login() {
       const { email, password } = this;
       this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
-        this.$router.push("/dashboard");
+        this.$router.push("/");
       });
     }
   }

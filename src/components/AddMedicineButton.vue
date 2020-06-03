@@ -9,7 +9,7 @@
         v-model="medName"
       />
       <vs-input label="Strength" class="inputx" placeholder="e.g. 500 mg" v-model="medDose" />
-      <vs-input label="Quantity" class="inputx" placeholder="e.g. 2" v-model="medDose" />
+      <vs-input label="Quantity" class="inputx" placeholder="e.g. 2" v-model="medQuantity" />
       <vs-button
         class="btn"
         color="success"
