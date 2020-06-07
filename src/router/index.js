@@ -6,6 +6,8 @@ import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 import Home from '../components/Home.vue';
 
+import { USER_REQUEST } from '../store/mutation-types';
+
 const ifNotAuthenticated = (to, from, next) => {
 	if (!store.getters.isAuthenticated) {
 		next();
@@ -16,6 +18,7 @@ const ifNotAuthenticated = (to, from, next) => {
 
 const ifAuthenticated = (to, from, next) => {
 	if (store.getters.isAuthenticated) {
+		store.dispatch(USER_REQUEST);
 		next();
 		return;
 	}

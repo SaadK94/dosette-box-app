@@ -13,7 +13,8 @@ export const state = {
 
 export const getters = {
 	isAuthenticated: (state) => !!state.token,
-	authStatus: (state) => state.status
+	authStatus: (state) => state.status,
+	getToken: (state) => state.token
 };
 
 export const actions = {
@@ -28,7 +29,7 @@ export const actions = {
 					axios.defaults.headers.common['Authorization'] = token;
 					commit(AUTH_SUCCESS, token);
 					// you have your token, now log in your user :)
-					// dispatch(USER_REQUEST);
+					dispatch(USER_REQUEST);
 					resolve(resp);
 				})
 				.catch((err) => {
@@ -44,7 +45,7 @@ export const actions = {
 			resolve();
 		});
 	},
-	[AUTH_LOGOUT]: ({ commit, dispatch }) => {
+	[AUTH_LOGOUT]: ({ commit }) => {
 		return new Promise((resolve) => {
 			commit(AUTH_LOGOUT);
 			localStorage.removeItem('user-token'); // clear your user's token from localstorage

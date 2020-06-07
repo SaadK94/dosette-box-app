@@ -1,16 +1,16 @@
 <template>
   <vs-row vs-justify="center">
     <app-time :time="time.morning">
-      <app-table :medicines="medicines.morning"></app-table>
+      <app-table :time="time.morning" :medicines="medicines.morning"></app-table>
     </app-time>
     <app-time :time="time.midDay">
-      <app-table :medicines="medicines.midDay"></app-table>
+      <app-table :time="time.midDay" :medicines="medicines.midDay"></app-table>
     </app-time>
     <app-time :time="time.teaTime">
-      <app-table :medicines="medicines.teaTime"></app-table>
+      <app-table :time="time.teaTime" :medicines="medicines.teaTime"></app-table>
     </app-time>
     <app-time :time="time.bedtime">
-      <app-table :medicines="medicines.bedtime"></app-table>
+      <app-table :time="time.bedtime" :medicines="medicines.bedtime"></app-table>
     </app-time>
   </vs-row>
 </template>
@@ -23,10 +23,10 @@ export default {
   data() {
     return {
       time: {
-        morning: "Morning",
-        midDay: "Mid-day",
-        teaTime: "Tea-time",
-        bedtime: "Bedtime"
+        morning: ["Morning", "morning"],
+        midDay: ["Mid-day", "midDay"],
+        teaTime: ["Tea-time", "teaTime"],
+        bedtime: ["Bedtime", "bedtime"]
       }
     };
   },
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     medicines() {
-      return this.$store.getters.getMedicines;
+      return this.$store.getters.getUserData;
     }
   }
 };

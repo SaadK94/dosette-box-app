@@ -15,7 +15,13 @@
 
           <vs-td>{{tr.quantity}}</vs-td>
 
-          <app-edit-button></app-edit-button>
+          <app-edit-button
+            :data="tr"
+            :medName="tr.name"
+            :medStrength="tr.strength"
+            :medQuantity="tr.quantity"
+            :time="time"
+          ></app-edit-button>
         </vs-tr>
       </template>
     </vs-table>
@@ -26,7 +32,7 @@
 import EditButton from "./EditButton.vue";
 
 export default {
-  props: ["medicines"],
+  props: ["medicines", "time"],
   components: {
     appEditButton: EditButton
   }

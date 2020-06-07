@@ -12,7 +12,7 @@
         <router-link to="/login">Login</router-link>
       </vs-navbar-item>
       <vs-navbar-item v-if="auth" index="2">
-        <vs-button type="gradient" @click="logout">Logout</vs-button>
+        <vs-button type="gradient" size="small " @click="logout">Logout</vs-button>
       </vs-navbar-item>
     </vs-navbar>
   </div>
