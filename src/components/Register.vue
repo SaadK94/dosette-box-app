@@ -1,15 +1,60 @@
 <template>
-  <div>
-    <form @submit.prevent="signup">
-      <h1>Register</h1>
-      <label>Email</label>
-      <input required v-model="email" type="text" placeholder="Email" />
-      <label>Password</label>
-      <input required v-model="password" type="password" placeholder="Password" />
-      <hr />
-      <button type="submit">Register</button>
-    </form>
-  </div>
+  <vs-row vs-justify="center" class="full-card">
+    <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="4" vs-sm="6" vs-xs="8">
+      <vs-card class="card">
+        <div slot="header">
+          <vs-row vs-justify="center">
+            <h3>Register</h3>
+          </vs-row>
+        </div>
+        <div class="card-body">
+          <vs-row vs-justify="center">
+            <form @submit.prevent="signup">
+              <vs-input
+                :danger="emailIcon.danger"
+                :danger-text="errorMessage"
+                valIconDanger="clear"
+                :icon-after="emailIcon.iconAfter"
+                :icon="emailIcon.icon"
+                label-placeholder="Email"
+                v-model="email"
+                type="email"
+              />
+              <vs-input
+                :danger="passwordIcon.danger"
+                :danger-text="errorMessage"
+                valIconDanger="clear"
+                :icon-after="passwordIcon.iconAfter"
+                :icon="passwordIcon.icon"
+                label-placeholder="Password"
+                v-model="password"
+                type="password"
+              />
+              <vs-input
+                :danger="passwordIcon.danger"
+                :danger-text="errorMessage"
+                valIconDanger="clear"
+                :icon-after="passwordIcon.iconAfter"
+                :icon="passwordIcon.icon"
+                label-placeholder="Confirm Password"
+                v-model="confirmPassword"
+                type="password"
+              />
+              <vs-row vs-justify="center">
+                <vs-button type="gradient" button="submit" class="btn">Register</vs-button>
+              </vs-row>
+            </form>
+          </vs-row>
+        </div>
+        <div slot="footer">
+          <vs-row vs-justify="center">Already have an account?</vs-row>
+          <vs-row vs-justify="center">
+            <router-link to="/login">Login</router-link>
+          </vs-row>
+        </div>
+      </vs-card>
+    </vs-col>
+  </vs-row>
 </template>
 
 <script>
@@ -19,16 +64,85 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      confirmPassword: "",
+      emailIcon: {
+        danger: false,
+        icon: "email",
+        iconAfter: true
+      },
+      passwordIcon: {
+        danger: false,
+        icon: "lock",
+        iconAfter: true
+      }
     };
   },
+  computed: {
+    errorMessage() {
+      return this.$store.getters.getErrorMessage;
+    }
+  },
+  watch: {
+    errorMessage() {
+      if (this.errorMessage === "Email already in use") {
+        this.passwordIconReset();
+        this.emailIcon.danger = true;
+        this.emailIcon.icon = "";
+        this.emailIcon.iconAfter = false;
+      }
+      if (this.errorMessage === "Incorrect password") {
+        this.emailIconReset();
+        this.passwordIcon.danger = true;
+        this.passwordIcon.icon = "";
+        this.passwordIcon.iconAfter = false;
+      }
+    }
+  },
   methods: {
-    signup() {
+    async signup() {
       const { email, password } = this;
-      this.$store
-        .dispatch(AUTH_REGISTER, { email, password })
-        .then(() => this.$router.push("/login"));
+      await this.$store.dispatch(AUTH_REGISTER, { email, password });
+      if (!this.errorMessage) {
+        this.$router.push("/login");
+      }
+    },
+    emailIconReset() {
+      this.emailIcon.danger = false;
+      this.emailIcon.icon = "email";
+      this.emailIcon.iconAfter = true;
+    },
+    passwordIconReset() {
+      this.passwordIcon.danger = false;
+      this.passwordIcon.icon = "lock";
+      this.passwordIcon.iconAfter = true;
     }
   }
 };
 </script>
+
+<style scoped>
+h3 {
+  font-size: 150%;
+}
+.full-card {
+  margin-top: 7%;
+}
+.card {
+  height: 100%;
+}
+.card-body {
+  margin-top: 2%;
+}
+.btn {
+  width: 100%;
+  margin-top: 12%;
+}
+.card-body .vs-input {
+  margin-top: 12%;
+}
+pre {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.8);
+}
+</style>

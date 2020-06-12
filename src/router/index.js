@@ -6,7 +6,7 @@ import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 import Home from '../components/Home.vue';
 
-import { USER_REQUEST } from '../store/mutation-types';
+import { DOSETTE_REQUEST } from '../store/mutation-types';
 
 const ifNotAuthenticated = (to, from, next) => {
 	if (!store.getters.isAuthenticated) {
@@ -16,9 +16,9 @@ const ifNotAuthenticated = (to, from, next) => {
 	next('/');
 };
 
-const ifAuthenticated = (to, from, next) => {
+const ifAuthenticated = async (to, from, next) => {
 	if (store.getters.isAuthenticated) {
-		store.dispatch(USER_REQUEST);
+		await store.dispatch(DOSETTE_REQUEST);
 		next();
 		return;
 	}

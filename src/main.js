@@ -4,8 +4,8 @@ import router from './router';
 import store from './store';
 import Vuesax from 'vuesax';
 
-import 'vuesax/dist/vuesax.css'; //Vuesax styles
 import 'material-icons/iconfont/material-icons.css';
+import 'vuesax/dist/vuesax.css'; //Vuesax styles
 
 Vue.config.productionTip = false;
 

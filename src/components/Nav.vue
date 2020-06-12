@@ -1,17 +1,17 @@
 <template>
   <div>
-    <vs-navbar type="gradient" v-model="activeItem" class="nabarx">
+    <vs-navbar type="shadow" v-model="activeItem" class="nabarx">
       <div slot="title">
         <vs-navbar-title>My Dosette Box</vs-navbar-title>
       </div>
 
-      <vs-navbar-item v-if="!auth" index="0">
+      <!-- <vs-navbar-item v-if="!isAuthenticated" index="0">
         <router-link to="/register">Register</router-link>
       </vs-navbar-item>
-      <vs-navbar-item v-if="!auth" index="1">
+      <vs-navbar-item v-if="!isAuthenticated" index="1">
         <router-link to="/login">Login</router-link>
-      </vs-navbar-item>
-      <vs-navbar-item v-if="auth" index="2">
+      </vs-navbar-item>-->
+      <vs-navbar-item v-if="isAuthenticated" index="2">
         <vs-button type="gradient" size="small " @click="logout">Logout</vs-button>
       </vs-navbar-item>
     </vs-navbar>
@@ -26,15 +26,14 @@ export default {
     activeItem: 0
   }),
   computed: {
-    auth() {
+    isAuthenticated() {
       return this.$store.getters.isAuthenticated;
     }
   },
   methods: {
-    logout() {
-      this.$store.dispatch(AUTH_LOGOUT).then(() => {
-        this.$router.push("/login");
-      });
+    async logout() {
+      await this.$store.dispatch(AUTH_LOGOUT);
+      this.$router.push("/login");
     }
   }
 };

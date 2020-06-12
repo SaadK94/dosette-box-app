@@ -1,5 +1,6 @@
 <template>
   <vs-row vs-justify="center">
+    <!-- Use a loop -->
     <app-time :time="time.morning">
       <app-table :time="time.morning" :medicines="medicines.morning"></app-table>
     </app-time>
@@ -36,7 +37,7 @@ export default {
   },
   computed: {
     medicines() {
-      return this.$store.getters.getUserData;
+      return this.$store.getters.getDosette;
     }
   }
 };

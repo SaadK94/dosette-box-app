@@ -1,6 +1,6 @@
 <template >
   <div>
-    <vs-table stripe :data="medicines">
+    <vs-table v-if="medicines" stripe :data="medicines">
       <template slot="thead">
         <vs-th>Medicine</vs-th>
         <vs-th>Strength</vs-th>

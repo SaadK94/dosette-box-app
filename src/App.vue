@@ -10,6 +10,8 @@ import { AUTH_LOGOUT } from "./store/mutation-types";
 import axios from "./axios-instance";
 import Nav from "./components/Nav.vue";
 
+// TODO: Add error alert. If else with computed property, When user clicks okay, ERROR_CLEAR mutation.
+
 export default {
   created() {
     axios.interceptors.response.use(undefined, err => {
