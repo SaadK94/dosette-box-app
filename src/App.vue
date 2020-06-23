@@ -33,4 +33,12 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: url(./assets/pill-wallpaper5.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 </style>

@@ -4,7 +4,8 @@ import {
 	DOSETTE_ADD,
 	DOSETTE_EDIT,
 	DOSETTE_DELETE,
-	USER_LOGOUT
+	USER_LOGOUT,
+	MEDICINE_RESET
 } from './mutation-types';
 import axios from '../axios-instance';
 import qs from 'qs';
@@ -34,7 +35,7 @@ export const actions = {
 			console.log(e);
 		}
 	},
-	[DOSETTE_ADD]: async ({ dispatch, rootState }, data) => {
+	[DOSETTE_ADD]: async ({ commit, dispatch, rootState }, data) => {
 		const params = {
 			url: '/dosette/add-medicine',
 			params: {
@@ -46,6 +47,7 @@ export const actions = {
 		try {
 			await axios(params);
 			await dispatch(DOSETTE_REQUEST);
+			commit(MEDICINE_RESET);
 		} catch (e) {
 			console.log(e);
 		}

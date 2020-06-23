@@ -3,7 +3,7 @@
     <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="4" vs-sm="6" vs-xs="8">
       <vs-card class="card">
         <div slot="header">
-          <vs-row vs-justify="center">
+          <vs-row class="card-header" vs-justify="center">
             <h3>Login</h3>
           </vs-row>
         </div>
@@ -33,7 +33,7 @@
                 required
               />
               <vs-row vs-justify="center">
-                <vs-button type="gradient" button="submit" class="btn">Login</vs-button>
+                <vs-button color="rgb(0, 48, 135)" button="submit" class="btn">Login</vs-button>
               </vs-row>
             </form>
           </vs-row>
@@ -51,7 +51,6 @@
 
 <script>
 import { AUTH_REQUEST } from "../store/mutation-types";
-import pictre from "../assets/meds.jpg";
 
 export default {
   data() {
@@ -132,5 +131,9 @@ h3 {
 .btn {
   width: 100%;
   margin-top: 12%;
+}
+.card-header {
+  color: rgb(0, 94, 184);
+  font-size: 1.3em;
 }
 </style>

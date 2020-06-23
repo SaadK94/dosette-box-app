@@ -1,15 +1,15 @@
 <template>
-  <vs-row vs-justify="center" class="full-card">
+  <vs-row id="main" vs-justify="center" class="full-card">
     <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="4" vs-sm="6" vs-xs="8">
       <vs-card class="card">
         <div slot="header">
-          <vs-row vs-justify="center">
+          <vs-row class="card-header" vs-justify="center">
             <h3>Register</h3>
           </vs-row>
         </div>
         <div class="card-body">
           <vs-row vs-justify="center">
-            <form @submit.prevent="signup">
+            <form @submit.prevent="doPasswordsMatch">
               <vs-input
                 :danger="emailIcon.danger"
                 :danger-text="errorMessage"
@@ -19,6 +19,7 @@
                 label-placeholder="Email"
                 v-model="email"
                 type="email"
+                required
               />
               <vs-input
                 :danger="passwordIcon.danger"
@@ -29,19 +30,21 @@
                 label-placeholder="Password"
                 v-model="password"
                 type="password"
+                required
               />
               <vs-input
-                :danger="passwordIcon.danger"
-                :danger-text="errorMessage"
+                :danger="confirmPasswordIcon.danger"
+                danger-text="Passwords don't match"
                 valIconDanger="clear"
-                :icon-after="passwordIcon.iconAfter"
-                :icon="passwordIcon.icon"
+                :icon-after="confirmPasswordIcon.iconAfter"
+                :icon="confirmPasswordIcon.icon"
                 label-placeholder="Confirm Password"
                 v-model="confirmPassword"
                 type="password"
+                required
               />
               <vs-row vs-justify="center">
-                <vs-button type="gradient" button="submit" class="btn">Register</vs-button>
+                <vs-button color="rgb(0, 48, 135)" button="submit" class="btn">Register</vs-button>
               </vs-row>
             </form>
           </vs-row>
@@ -72,6 +75,11 @@ export default {
         iconAfter: true
       },
       passwordIcon: {
+        danger: false,
+        icon: "lock",
+        iconAfter: true
+      },
+      confirmPasswordIcon: {
         danger: false,
         icon: "lock",
         iconAfter: true
@@ -116,6 +124,25 @@ export default {
       this.passwordIcon.danger = false;
       this.passwordIcon.icon = "lock";
       this.passwordIcon.iconAfter = true;
+    },
+    confirmPasswordIconReset() {
+      this.confirmPasswordIcon.danger = false;
+      this.confirmPasswordIcon.icon = "lock";
+      this.confirmPasswordIcon.iconAfter = true;
+    },
+    doPasswordsMatch() {
+      this.passwordIconReset();
+      this.emailIconReset();
+      this.confirmPasswordIconReset();
+
+      if (this.password !== this.confirmPassword) {
+        this.confirmPasswordIcon.danger = true;
+        this.confirmPasswordIcon.icon = "";
+        this.confirmPasswordIcon.iconAfter = false;
+      }
+      if (this.password == this.confirmPassword) {
+        this.signup();
+      }
     }
   }
 };
@@ -141,8 +168,8 @@ h3 {
 .card-body .vs-input {
   margin-top: 12%;
 }
-pre {
-  width: 100%;
-  color: rgba(255, 255, 255, 0.8);
+.card-header {
+  color: rgb(0, 94, 184);
+  font-size: 1.3em;
 }
 </style>

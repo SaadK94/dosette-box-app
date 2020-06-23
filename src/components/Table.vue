@@ -8,7 +8,7 @@
       </template>
 
       <template slot-scope="{data}">
-        <vs-tr v-for="tr in data">
+        <vs-tr :key="i" v-for="(tr, i) in data">
           <vs-td>{{tr.name}}</vs-td>
 
           <vs-td>{{tr.strength}}</vs-td>
@@ -38,3 +38,6 @@ export default {
   }
 };
 </script> 
+
+<style scoped>
+</style>

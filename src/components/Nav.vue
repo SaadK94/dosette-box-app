@@ -1,30 +1,20 @@
 <template>
-  <div>
-    <vs-navbar type="shadow" v-model="activeItem" class="nabarx">
+  <vs-row>
+    <vs-navbar type="gradient" class="navbarx" color="rgba(65, 182, 230, .9)">
       <div slot="title">
-        <vs-navbar-title>My Dosette Box</vs-navbar-title>
+        <vs-navbar-title class="title">My Dosette Box</vs-navbar-title>
       </div>
-
-      <!-- <vs-navbar-item v-if="!isAuthenticated" index="0">
-        <router-link to="/register">Register</router-link>
-      </vs-navbar-item>
-      <vs-navbar-item v-if="!isAuthenticated" index="1">
-        <router-link to="/login">Login</router-link>
-      </vs-navbar-item>-->
-      <vs-navbar-item v-if="isAuthenticated" index="2">
-        <vs-button type="gradient" size="small " @click="logout">Logout</vs-button>
+      <vs-navbar-item v-if="isAuthenticated">
+        <vs-button @click="logout" color="rgb(0, 48, 135)">Logout</vs-button>
       </vs-navbar-item>
     </vs-navbar>
-  </div>
+  </vs-row>
 </template>
 
 <script>
 import { AUTH_LOGOUT } from "../store/mutation-types";
 
 export default {
-  data: () => ({
-    activeItem: 0
-  }),
   computed: {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;
@@ -40,7 +30,13 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin-bottom: 10px;
+.title {
+  color: rgb(35, 31, 32);
+  font-size: 1.6em;
+  font-weight: 700;
+  width: 215px;
+}
+.navbarx {
+  height: 40px;
 }
 </style>
