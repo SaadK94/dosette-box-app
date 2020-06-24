@@ -1,6 +1,12 @@
 <template>
   <div class="centerx">
-    <vs-button @click="popupActivo=true" type="line" icon="edit" size="small"></vs-button>
+    <vs-button
+      @click="popupActivo=true"
+      type="line"
+      color="rgb(0, 48, 135)"
+      icon="edit"
+      size="small"
+    ></vs-button>
     <vs-popup
       style="color:rgb(0, 94, 184)"
       background-color="rgba(0, 0, 0, 0.65)"
@@ -49,7 +55,7 @@
         <vs-row type="flex" vs-justify="space-between">
           <vs-button
             class="btn"
-            color="success"
+            color="rgb(0,150, 57)"
             type="border"
             icon="done"
             :disabled="disableButton"

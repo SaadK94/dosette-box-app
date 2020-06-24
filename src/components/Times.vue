@@ -1,6 +1,5 @@
 <template>
   <vs-row vs-justify="center">
-    <!-- Use a loop -->
     <app-time class="cardx" :time="time.morning">
       <app-table :time="time.morning" :medicines="medicines.morning"></app-table>
     </app-time>

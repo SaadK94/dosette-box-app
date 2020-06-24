@@ -10,16 +10,12 @@ import { AUTH_LOGOUT } from "./store/mutation-types";
 import axios from "./axios-instance";
 import Nav from "./components/Nav.vue";
 
-// TODO: Add error alert. If else with computed property, When user clicks okay, ERROR_CLEAR mutation.
-
 export default {
   created() {
     axios.interceptors.response.use(undefined, err => {
       return new Promise((resolve, reject) => {
         if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          // if you ever get an unauthorized, logout the user
           this.$store.dispatch(AUTH_LOGOUT);
-          // you can also redirect to /login if needed !
           this.$router.push("/login");
         }
         throw err;
