@@ -1,6 +1,6 @@
 # dosette-box
 
-http://www.mydosbox.co.uk
+www.mydosbox.co.uk
 
 Frontend of the application was a static VueJS build, implemented with; Vue Router, Vuex, Axios, Vuesax UI library and token based authentication.
 
