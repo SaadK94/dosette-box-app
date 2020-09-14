@@ -1,20 +1,23 @@
 # dosette-box
 
-## Project setup
-```
-npm install
-```
+http://www.mydosbox.co.uk
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Frontend of the application was a static VueJS build, implemented with; Vue Router, Vuex, Axios, Vuesax UI library and token based authentication.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Screenshots
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# dosette-box-app
+![register](https://github.com/SaadK94/dosette-box-app/blob/master/screenshots/register.png)
+![login](https://github.com/SaadK94/dosette-box-app/blob/master/screenshots/login.png)
+![main-page](https://github.com/SaadK94/dosette-box-app/blob/master/screenshots/main-page.png)
+![add-medication](https://github.com/SaadK94/dosette-box-app/blob/master/screenshots/add-medication.png)
+![autocomplete](https://github.com/SaadK94/dosette-box-app/blob/master/screenshots/autocomplete.png)
+
+## Built With
+
+### Frontend
+
+- Vue
+- Vuex
+- Vue Router
+- Axios
+- Vuesax UI library
